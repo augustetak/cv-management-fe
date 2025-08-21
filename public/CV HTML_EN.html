@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Augustin TANKAM</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.5;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 15px;
+        }
+
+        .cv-container {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" patternUnits="userSpaceOnUse" width="100" height="100"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        }
+
+        .profile-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            object-fit: cover;
+            position: relative;
+            z-index: 2;
+            flex-shrink: 0;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            flex: 1;
+        }
+
+        .name {
+            font-size: 2.5em;
+            font-weight: 300;
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .title {
+            font-size: 1.2em;
+            opacity: 0.9;
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.9em;
+        }
+
+        .contact-icon {
+            width: 14px;
+            height: 14px;
+            opacity: 0.8;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 2.2fr;
+            gap: 30px;
+            padding: 30px;
+        }
+
+        .sidebar {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 12px;
+            height: fit-content;
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 6px;
+            border-bottom: 3px solid #3498db;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 25px;
+            height: 3px;
+            background: #e74c3c;
+        }
+
+        .skills-grid {
+            display: grid;
+            gap: 12px;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 12px;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .skill-category-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 6px;
+            font-size: 0.85em;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 3px 6px;
+            border-radius: 3px;
+            font-size: 0.7em;
+            font-weight: 500;
+        }
+
+        .languages {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 8px;
+        }
+
+        .language {
+            text-align: center;
+            padding: 8px;
+            background: white;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            flex: 1;
+            margin: 0 3px;
+        }
+
+        .language-name {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 3px;
+            font-size: 0.85em;
+        }
+
+        .language-level {
+            font-size: 0.7em;
+            color: #7f8c8d;
+        }
+
+        .experience-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .experience-item:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+        }
+
+        .company-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .company-info {
+            flex: 1;
+        }
+
+        .company-name {
+            font-weight: 700;
+            color: #2c3e50;
+            font-size: 1em;
+            margin-bottom: 2px;
+        }
+
+        .job-title {
+            color: #3498db;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        .period {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 15px;
+            font-size: 0.75em;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .context {
+            background: #ecf0f1;
+            padding: 12px;
+            border-radius: 6px;
+            margin: 12px 0;
+            border-left: 3px solid #3498db;
+        }
+
+        .context-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 6px;
+            font-size: 0.85em;
+        }
+
+        .context p {
+            font-size: 0.85em;
+            line-height: 1.4;
+        }
+
+        .actions {
+            margin: 12px 0;
+        }
+
+        .actions ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .actions li {
+            padding: 4px 0;
+            padding-left: 15px;
+            position: relative;
+            color: #555;
+            font-size: 0.85em;
+            line-height: 1.3;
+        }
+
+        .actions li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: #3498db;
+            font-size: 0.7em;
+        }
+
+        .tech-env {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 12px;
+        }
+
+        .tech-env-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 6px;
+            font-size: 0.8em;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        .tech-tag {
+            background: #34495e;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.7em;
+            font-weight: 500;
+        }
+
+        .education-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+            margin-bottom: 12px;
+            border-left: 4px solid #9b59b6;
+        }
+
+        .degree {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 4px;
+            font-size: 0.85em;
+        }
+
+        .school {
+            color: #7f8c8d;
+            font-size: 0.8em;
+        }
+
+        .year {
+            background: #9b59b6;
+            color: white;
+            padding: 3px 6px;
+            border-radius: 3px;
+            font-size: 0.7em;
+            font-weight: 600;
+            float: right;
+        }
+
+        .summary {
+            text-align: left;
+            font-size: 0.9em;
+            line-height: 1.4;
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .cv-container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+            .experience-item:hover {
+                transform: none;
+                box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+            }
+        }
+
+        @page {
+            margin: 0.8cm;
+            size: A4;
+        }
+
+        .compact-exp {
+            padding: 15px;
+        }
+
+        .compact-exp .company-header {
+            margin-bottom: 8px;
+        }
+
+        .compact-exp .context {
+            padding: 8px;
+            margin: 8px 0;
+        }
+
+        .compact-exp .actions li {
+            padding: 2px 0 2px 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="cv-container">
+        <header class="header">
+            <img class="profile-photo" src="images/cv-tankam-photo-profil.jpg" alt="Augustin Tankam">
+            <div class="header-content">
+                <h1 class="name">AUGUSTIN TANKAM</h1>
+                <p class="title">Computer Engineer / Fullstack Developer • Java / SpringBoot / Angular / ReactJS</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                        </svg>
+                        <span>augustin.tankam@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+                        </svg>
+                        <span>+352 661 449 496</span>
+                    </div>
+                </div>
+                <div class="summary">
+                    Fullstack developer with 10 years of experience, specialized in Java/Spring Boot and React, having worked on banking, insurance and cloud projects
+                </div>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <aside class="sidebar">
+                <section class="section">
+                    <h2 class="section-title">SKILLS</h2>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <div class="skill-category-title">Languages / Frameworks</div>
+                            <div class="skill-tags">                                
+                                <span class="skill-tag">Java 8+</span>
+                                <span class="skill-tag">Spring</span>
+                                <span class="skill-tag">SpringBoot</span>
+                                <span class="skill-tag">JEE</span>
+                                <span class="skill-tag">React</span>
+                                <span class="skill-tag">Angular</span>
+                                <span class="skill-tag">TypeScript</span>
+                                <span class="skill-tag">JavaScript</span>
+                                <span class="skill-tag">JSF</span>
+                                <span class="skill-tag">.NET</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <div class="skill-category-title">Databases</div>
+                            <div class="skill-tags">
+                                <span class="skill-tag">PostgreSQL</span>
+                                <span class="skill-tag">MySQL</span>
+                                <span class="skill-tag">Oracle</span>
+                                <span class="skill-tag">MongoDB</span>
+                                <span class="skill-tag">CouchBase</span>
+                                <span class="skill-tag">SQL Server</span>
+                                <span class="skill-tag">MariaDB</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <div class="skill-category-title">DevOps & Cloud</div>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Docker</span>
+                                <span class="skill-tag">Kubernetes</span>
+                                <span class="skill-tag">Jenkins</span>
+                                <span class="skill-tag">Azure</span>
+                                <span class="skill-tag">OpenShift</span>
+                                <span class="skill-tag">Maven</span>
+                                <span class="skill-tag">Git</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <div class="skill-category-title">Servers & Tools</div>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Tomcat</span>
+                                <span class="skill-tag">WebSphere</span>
+                                <span class="skill-tag">JBoss</span>
+                                <span class="skill-tag">Nginx</span>
+                                <span class="skill-tag">Eclipse</span>
+                                <span class="skill-tag">IntelliJ</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <div class="skill-category-title">Methodologies</div>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Scrum</span>
+                                <span class="skill-tag">TDD</span>
+                                <span class="skill-tag">Agile</span>
+                                <span class="skill-tag">Microservices</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">LANGUAGES</h2>
+                    <div class="languages">
+                        <div class="language">
+                            <div class="language-name">French</div>
+                            <div class="language-level">Native</div>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">English</div>
+                            <div class="language-level">Fluent</div>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Italian</div>
+                            <div class="language-level">Fluent</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">EDUCATION</h2>
+                    <div class="education-item">
+                        <div class="year">2015</div>
+                        <div class="degree">IT Engineer - Information Systems</div>
+                        <div class="school">University of Bergamo, Italy</div>
+                    </div>
+                    <div class="education-item">
+                        <div class="year">2010</div>
+                        <div class="degree">Bachelor's in Computer Science & Telecommunications</div>
+                        <div class="school">University of Milan</div>
+                    </div>
+                    <div class="education-item">
+                        <div class="year">2005</div>
+                        <div class="degree">High School Diploma</div>
+                        <div class="school">École Normale Supérieure</div>
+                    </div>
+                </section>
+            </aside>
+
+            <main class="content">
+                <section class="section">
+                    <h2 class="section-title">PROFESSIONAL EXPERIENCE</h2>
+
+                    <!-- Davidson/PWC -->
+                    <div class="experience-item">
+                        <div class="company-header">
+                            <div class="company-info">
+                                <div class="company-name">PWC LUXEMBOURG</div>
+                                <div class="job-title">Full Stack Developer (Java / React)</div>
+                            </div>
+                            <div class="period">Mar 2023 - Present</div>
+                        </div>
+                        <div class="context">
+                            <div class="context-title">Context:</div>
+                            <p>Davidson consultant at PWC Luxembourg. Design, development and maintenance of internal HR management applications for the HR team.</p>
+                        </div>
+                        <div class="actions">
+                            <ul>
+                                <li>Requirements analysis and technical specifications</li>
+                                <li>Full stack development and unit testing</li>
+                                <li>Deployment to multiple environments (DEV, UAT, PROD)</li>
+                                <li>Using MS SQL Server, Nexus and Helm Charts</li>
+                                <li>Continuous maintenance and support</li>
+                            </ul>
+                        </div>
+                        <div class="tech-env">
+                            <div class="tech-env-title">Technical environment:</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Spring Boot</span>
+                                <span class="tech-tag">Spring Security</span>
+                                <span class="tech-tag">Spring Cloud</span>
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">Redux</span>
+                                <span class="tech-tag">Material UI</span>
+                                <span class="tech-tag">Keycloak</span>
+                                <span class="tech-tag">OAuth2</span>
+                                <span class="tech-tag">Agile</span>
+                                <span class="tech-tag">Docker</span>
+                                <span class="tech-tag">Kubernetes</span>
+                                <span class="tech-tag">Azure DevOps</span>
+                                <span class="tech-tag">Terraform</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Davidson Consultant -->
+                    <div class="experience-item compact-exp">
+                        <div class="company-header">
+                            <div class="company-info">
+                                <div class="company-name">DAVIDSON LUXEMBOURG</div>
+                                <div class="job-title">Davidson Consultant</div>
+                            </div>
+                            <div class="period">Feb 2022 - Present</div>
+                        </div>
+                        <div class="context">
+                            <div class="context-title">Context:</div>
+                            <p>Fullstack Developer working on missions for Davidson Luxembourg. Quality and solution-oriented, with strong team spirit.</p>
+                        </div>
+                    </div>
+
+                    <!-- BIL -->
+                    <div class="experience-item">
+                        <div class="company-header">
+                            <div class="company-info">
+                                <div class="company-name">BIL BANQUE INTERNATIONALE LUXEMBOURG</div>
+                                <div class="job-title">Full Stack Developer</div>
+                            </div>
+                            <div class="period">Feb 2022 - Mar 2023</div>
+                        </div>
+                        <div class="context">
+                            <div class="context-title">Mission: ML-FRAUD</div>
+                            <p>Anti-money laundering project enabling the bank to fight against fraud, money laundering and terrorism financing.</p>
+                        </div>
+                        <div class="actions">
+                            <ul>
+                                <li>Analysis of MX payments from Transact banking system</li>
+                                <li>Data transformation to communicate with CFRM anti-fraud application via REST API</li>
+                                <li>Communication with Safewatch anti-money laundering application via MQ</li>
+                                <li>Participation in agile ceremonies (daily, refinement, sprint planning, etc.)</li>
+                                <li>Design and writing user stories with the Product Owner</li>
+                                <li>Development of unit, integration and non-regression tests</li>
+                            </ul>
+                        </div>
+                        <div class="tech-env">
+                            <div class="tech-env-title">Technical environment:</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Java 11</span>
+                                <span class="tech-tag">Oracle</span>
+                                <span class="tech-tag">OpenShift</span>
+                                <span class="tech-tag">Maven</span>
+                                <span class="tech-tag">XLrelease</span>
+                                <span class="tech-tag">JMS</span>
+                                <span class="tech-tag">IBM WebSphere</span>
+                                <span class="tech-tag">Jenkins</span>
+                                <span class="tech-tag">Spring</span>
+                                <span class="tech-tag">Agile</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sky Italy -->
+                    <div class="experience-item">
+                        <div class="company-header">
+                            <div class="company-info">
+                                <div class="company-name">SKY ITALIA SPA MILAN</div>
+                                <div class="job-title">Full-Stack Engineer</div>
+                            </div>
+                            <div class="period">Mar 2017 - Jan 2022</div>
+                        </div>
+                        <div class="context">
+                            <div class="context-title">Mission: OTT audio and video stream management</div>
+                            <p>Design and implementation of audio and video stream management applications for Sky's OTT department. Personnel management, products, event scheduling and client set-top box configuration.</p>
+                        </div>
+                        <div class="actions">
+                            <ul>
+                                <li>Command Scheduler for event retrieval via SOAP and REST</li>
+                                <li>Executor for command transfer to encoder via API</li>
+                                <li>TelcoCheck for client set-top box configuration</li>
+                                <li>DMC module responsible for Encoding/Transcoding/Upload</li>
+                                <li>PDF, Word and Excel report generation</li>
+                                <li>Estimation and development of various evolution requests</li>
+                                <li>Creation of scripts enabling automatic application startup in case of errors on different servers</li>
+                                <li>Development of an application for database management during releases</li>
+                                <li>Building and implementation of ELK stack to collect and filter logs with Logstash and store with Elasticsearch</li>
+                                <li>Migration of PrimeFaces-based applications to Angular 8. Backend API to centralize data and Angular Frontend to expose data</li>
+                                <li>Production deployment management of different products</li>
+                                <li>On-call and production support</li>
+                            </ul>
+                        </div>
+                        <div class="tech-env">
+                            <div class="tech-env-title">Technical environment:</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Java 8</span>
+                                <span class="tech-tag">TypeScript</span>
+                                <span class="tech-tag">Spring Boot</span>
+                                <span class="tech-tag">Angular 8+</span>
+                                <span class="tech-tag">Liquibase</span>
+                                <span class="tech-tag">Hibernate</span>
+                                <span class="tech-tag">MySQL</span>
+                                <span class="tech-tag">Oracle</span>
+                                <span class="tech-tag">MariaDB</span>
+                                <span class="tech-tag">Spring Security</span>
+                                <span class="tech-tag">Elasticsearch</span>                        
+                                <span class="tech-tag">Logstash</span>
+                                <span class="tech-tag">Kibana</span>
+                                <span class="tech-tag">ActiveMQ</span>
+                                <span class="tech-tag">Docker</span>
+                                <span class="tech-tag">Linux</span>
+                                <span class="tech-tag">Shell Scripts</span>
+                                <span class="tech-tag">Linux Services</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- UniCredit - Credit Revolution -->
+                    <div class="experience-item">
+                        <div class="company-header">
+                            <div class="company-info">
+                                <div class="company-name">UNICREDIT - UBIS MILAN</div>
+                                <div class="job-title">Java Developer</div>
+                            </div>
+                            <div class="period">Nov 2015 - Feb 2017</div>
+                        </div>
+                        <div class="context">
+                            <div class="context-title">Mission: Credit Revolution</div>
+                            <p>Risk management project for overdrafts and personal and SME credit cards in an Italian bank.</p>
+                        </div>
+                        <div class="actions">
+                            <ul>
+                                <li>Business logic implementation according to integration guidelines</li>
+                                <li>Client requirements gathering, feasibility analysis, development and deployment</li>
+                                <li>Estimation and costing of various evolution requests</li>
+                                <li>Design and writing of technical specifications</li>
+                                <li>Code review and mentoring of newcomers</li>
+                                <li>Creation of SOAP webservices for communication in distributed architecture</li>
+                            </ul>
+                        </div>
+                        <div class="tech-env">
+                            <div class="tech-env-title">Technical environment:</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Java EE</span>
+                                <span class="tech-tag">Hibernate</span>
+                                <span class="tech-tag">Spring MVC</span>
+                                <span class="tech-tag">Spring Boot</span>
+                                <span class="tech-tag">Spring Security</span>
+                                <span class="tech-tag">Oracle</span>
+                                <span class="tech-tag">JAX-WS</span>
+                                <span class="tech-tag">SOAP</span>
+                                <span class="tech-tag">JSF</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- UniCredit - Server Migration -->
+                    <div class="experience-item compact-exp">
+                        <div class="company-header">
+                            <div class="company-info">
+                                <div class="company-name">UNICREDIT - UBIS MILAN</div>
+                                <div class="job-title">Java Developer</div>
+                            </div>
+                            <div class="period">Jan 2015 - Oct 2015</div>
+                        </div>
+                        <div class="context">
+                            <div class="context-title">Mission: Application server migration</div>
+                            <p>Migration of application server from WebSphere to JBOSS for all bank applications.</p>
+                        </div>
+                        <div class="actions">
+                            <ul>
+                                <li>Java upgrade from version 4 to 8</li>
+                                <li>Analysis of existing application server and databases</li>
+                                <li>JBOSS configuration and testing</li>
+                            </ul>
+                        </div>
+                        <div class="tech-env">
+                            <div class="tech-env-title">Technical environment:</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">JEE</span>
+                                <span class="tech-tag">Linux</span>
+                                <span class="tech-tag">JSF</span>
+                                <span class="tech-tag">JNDI</span>
+                                <span class="tech-tag">JBOSS</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SyncLab -->
+                    <div class="experience-item">
+                        <div class="company-header">
+                            <div class="company-info">
+                                <div class="company-name">SYNCLAB MILAN</div>
+                                <div class="job-title">Java Developer</div>
+                            </div>
+                            <div class="period">Aug 2014 - Jan 2015</div>
+                        </div>
+                        <div class="context">
+                            <div class="context-title">Mission: GeFoca management platform</div>
+                            <p>Design and implementation of an employee and supplier management platform. The GeFoca platform aims to manage personnel, client missions and suppliers.</p>
+                        </div>
+                        <div class="actions">
+                            <ul>
+                                <li>Personnel and working hours management</li>
+                                <li>Payroll and client management</li>
+                                <li>PDF, Word and Excel report generation</li>
+                                <li>Email system</li>
+                                <li>Backend and Frontend development</li>
+                            </ul>
+                        </div>
+                        <div class="tech-env">
+                            <div class="tech-env-title">Technical environment:</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Java 7</span>
+                                <span class="tech-tag">Hibernate</span>
+                                <span class="tech-tag">JPA 2</span>
+                                <span class="tech-tag">Oracle</span>
+                                <span class="tech-tag">Git</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mondadori -->
+                    <div class="experience-item">
+                        <div class="company-header">
+                            <div class="company-info">
+                                <div class="company-name">MONDADORI SPA MILAN</div>
+                                <div class="job-title">.Net and Java Developer</div>
+                            </div>
+                            <div class="period">Sep 2009 - Jun 2013</div>
+                        </div>
+                        <div class="context">
+                            <div class="context-title">Mission: Data flow management</div>
+                            <p>Design and implementation of data flow management applications for Mondadori suppliers. Backend development only.</p>
+                        </div>
+                        <div class="actions">
+                            <ul>
+                                <li>Client needs gathering, feasibility analysis, development, testing and production</li>
+                                <li>Automation of customer order management processes</li>
+                                <li>Analysis and parsing of customer orders</li>
+                            </ul>
+                        </div>
+                        <div class="tech-env">
+                            <div class="tech-env-title">Technical environment:</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Visual Studio</span>
+                                <span class="tech-tag">FTP</span>
+                                <span class="tech-tag">VBA</span>
+                                <span class="tech-tag">SOAP Webservices</span>
+                                <span class="tech-tag">Java 5</span>
+                                <span class="tech-tag">Eclipse</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+            </main>
+        </div>
+    </div>
+</body>
+</html>
